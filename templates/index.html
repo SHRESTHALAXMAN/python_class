@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Home Page
+{% endblock title %}
+
+
+{% block body %}
+<h1>Tasks</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">SN</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+            <th>{{forloop.counter}}</th>
+            <td>{{task.name}}</td>
+            <td>
+                {% if description is None%}
+                No data..!!
+                {%else%}
+                {{task.description}}
+                {%endif%}
+            </td>
+            <td>{% if task.status%}
+                ✅
+                {% else %}
+                ❌
+                {% endif %}
+            </td>
+            <td>
+                <a class="btn btn-primary" href="#" role="button">Link</a>
+                <a class="btn btn-primary" href="/mark/<pk>" role="button">Link</a>
+
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock body %}
